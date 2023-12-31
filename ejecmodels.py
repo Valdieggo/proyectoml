@@ -115,36 +115,48 @@ x_dataset2_test = dataset2_test.drop(['player_id_win','win'], axis=1)
 
 
 
-print("Los modelos seran evaluados con los datos de los partidos 2023, estos modelos fueron entrenados con los resultados de los partidos de tenis desde el año 2000 al 2022 \n")
+
 
 
 # Cargar el modelo desde el archivo
 modelo1 = load_model('models/keras_model1_relu62.h5')
+print("\n\n\n\n\n")
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 print("Modelo 1, capas densas activacion, relu, accuracy en entrenamiento: 62")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo1.evaluate(x_dataset2_test,y_dataset2_test)
 
-
+print("\n\n")
 
 modelo2 = load_model('models/keras_model2_leaky63.h5')
 print("Modelo 2 ,capas densas, activacion LeakyReLU, accuracy en entrenamiento: 63")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo2.evaluate(x_dataset2_test,y_dataset2_test)
 
-
+print("\n\n")
 # Cargar el modelo desde el archivo
 modelo3 = load_model('models/keras_model3_64_relu_leaky.h5')
 print("Modelo 3 ,capas densas, activacion  relu y LeakyReLU, accuracy en entrenamiento: 64")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo3.evaluate(x_dataset2_test,y_dataset2_test)
 
-
-print("Modelo 0 ,randomforest")
+print("\n\n")
+print("Modelo 4 ,randomforest, sin valancear el set")
 # Cargar el modelo
 modelo_forest = joblib.load('models/random_forest_model27_comp.pkl')
-y_pred = modelo_forest.predict(x_test)
+y_pred_forest = modelo_forest.predict(x_test)
 
 # Calcular la precisión del modelo en datos de prueba
-precision = accuracy_score(y_test, y_pred)
+precision = accuracy_score(y_test, y_pred_forest)
 
 print(f'Precisión en datos de prueba: {precision}')
+print("\n\n")
+print("Modelo 5,randomforest, con set valanceado ")
+modelo_forest2 = joblib.load('models/random_forest_model5.plk')
+y_pred_forest2=modelo_forest2.predict(x_dataset2_test)
+
+precision2=accuracy_score(y_dataset2_test,y_pred_forest2)
+print(f'Precisión en datos de prueba: {precision2}')
+
+print("\n\n\n")
+print("Los modelos seran evaluados con los datos de los partidos 2023, estos modelos fueron entrenados con los resultados de los partidos de tenis desde el año 2000 al 2022 \n")
