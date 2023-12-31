@@ -120,23 +120,25 @@ print("Los modelos seran evaluados con los datos de los partidos 2023, estos mod
 
 # Cargar el modelo desde el archivo
 modelo1 = load_model('models/keras_model1_relu62.h5')
-print("Modelo 1, capas densas activacion, relu")
+print("Modelo 1, capas densas activacion, relu, accuracy en entrenamiento: 62")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo1.evaluate(x_dataset2_test,y_dataset2_test)
 
 
 
 modelo2 = load_model('models/keras_model2_leaky63.h5')
-print("Modelo 2 ,capas densas, activacion LeakyReLU")
+print("Modelo 2 ,capas densas, activacion LeakyReLU, accuracy en entrenamiento: 63")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo2.evaluate(x_dataset2_test,y_dataset2_test)
 
 
 # Cargar el modelo desde el archivo
 modelo3 = load_model('models/keras_model3_64_relu_leaky.h5')
-print("Modelo 4 ,capas densas, activacion LeakyReLU")
+print("Modelo 3 ,capas densas, activacion  relu y LeakyReLU, accuracy en entrenamiento: 64")
 # Utilizar el modelo cargado para predicciones, evaluación, etc.
 modelo3.evaluate(x_dataset2_test,y_dataset2_test)
+
+
 print("Modelo 0 ,randomforest")
 # Cargar el modelo
 modelo_forest = joblib.load('models/random_forest_model27_comp.pkl')
